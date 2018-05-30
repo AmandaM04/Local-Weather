@@ -16,6 +16,7 @@ const retrieveKeys = () => {
   apiKeys()
     .then((results) => {
       owm.setKey(results.owm.apiKey);
+      firebase.initializeApp(results.firebase);
     })
     .catch((err) => {
       console.error('no keys:', err);

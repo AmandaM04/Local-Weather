@@ -23,11 +23,11 @@ const fiveDay = () => {
   });
 };
 
-const today = () => {
-  $('.Today').click(fiveDayClick);
+const today = (e) => {
+  $('.Today').click();
 };
 
-const fiveDayClick = () => {
+const fiveDayClick = (e) => {
   $('.fiveDayButt').click();
 };
 
