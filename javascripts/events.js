@@ -14,8 +14,28 @@ const pressEnter = () => {
   });
 };
 
+const fiveDay = () => {
+  $(document).keypress((e) => {
+    if (e.key === 'Enter') {
+      const searchZips = $('#searchBar').val();
+      owm.showResults(searchZips);
+    }
+  });
+};
+
+const today = (e) => {
+  $('.Today').click();
+};
+
+const fiveDayClick = (e) => {
+  $('.fiveDayButt').click();
+};
+
 const initializer = () => {
   pressEnter();
+  fiveDay();
+  today();
+  fiveDayClick();
 };
 
 module.exports = {
