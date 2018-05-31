@@ -1,4 +1,5 @@
 const owm = require('./owm');
+const fireBaseApi = require('./fireBaseApi');
 
 const apiKeys = () => {
   return new Promise((resolve, reject) => {
@@ -16,6 +17,7 @@ const retrieveKeys = () => {
   apiKeys()
     .then((results) => {
       owm.setKey(results.owm.apiKey);
+      fireBaseApi.setConfig(results.firebase);
       firebase.initializeApp(results.firebase);
     })
     .catch((err) => {

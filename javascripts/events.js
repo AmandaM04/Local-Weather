@@ -10,30 +10,35 @@ const pressEnter = () => {
     if (e.key === 'Enter') {
       const searchZips = $('#searchBar').val();
       owm.showResults(searchZips);
+      $('#weatherFiveDisplay').html('');
     }
   });
 };
 
-const fiveDay = () => {
-  $(document).keypress((e) => {
-    if (e.key === 'Enter') {
-      const searchZips = $('#searchBar').val();
-      owm.showResults(searchZips);
-    }
-  });
-};
+// const fiveDay = () => {
+//   $(document).keypress((e) => {
+//     if (e.key === 'Enter') {
+//       const searchZips = $('#searchBar').val();
+//       owm.showResults(searchZips);
+//     }
+//   });
+// };
 
 const today = (e) => {
-  $('.Today').click();
+  $(document).on('click', (e) => {
+    $('.Today').show();
+  });
 };
 
 const fiveDayClick = (e) => {
-  $('.fiveDayButt').click();
+  $(document).on('click', (e) => {
+    $('.fiveDayButt').show();
+  });
 };
 
 const initializer = () => {
   pressEnter();
-  fiveDay();
+  // fiveDay();
   today();
   fiveDayClick();
 };

@@ -24,7 +24,8 @@ const showResults = (searchZips) => {
     .then((result) => {
       const weatherArray = [];
       weatherArray.push(result);
-      dom.domString(weatherArray);
+      dom.singleWeather(weatherArray);
+      // dom.buildFiveDay(weatherArray);
     })
     .catch((err) => {
       console.error('search error:', err);
