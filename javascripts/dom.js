@@ -1,38 +1,47 @@
-const domString = (weatherArray) => {
-  let singleWeather = '';
-  weatherArray.forEach((weatherSingle) => {
-    singleWeather += `<div class="col-sm-6 col-md-4" text-center>`;
-    singleWeather += `<h3>${weatherSingle.name}</h3>`;
-    singleWeather += `<p>${weatherSingle.weather[0].main}: ${weatherSingle.main.temp}&degF</p>`;
-    singleWeather += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${weatherSingle.main.temp_min}&degF  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${weatherSingle.main.temp_max}&degF</p>`;
-    singleWeather += `<p>Air Pressure: ${weatherSingle.main.pressure}</p>`;
-    singleWeather += `<p>Wind Speed: ${weatherSingle.wind.speed}</p>`;
-    singleWeather += `<div>`;
-  });
-  printToDom(singleWeather);
+const singleWeather = (weather) => {
+  let domString = '';
+  // weatherArray.forEach((weatherSingle) => {
+  domString += `<div class="text-center">`;
+  domString += `<h3>${weather.name}</h3>`;
+  domString += `<p>Conditions: ${weather.weather[0].main}</p>`;
+  domString += `<p>Temp: ${weather.main.temp}&degF</p>`;
+  domString += `<p>Min: ${weather.main.temp_min}&degF / Max: ${weather.main.temp_max}&degF</p>`;
+  domString += `<p>Air Pressure: ${weather.main.pressure}</p>`;
+  domString += `<p>Wind Speed: ${weather.wind.speed}</p>`;
+  domString += `<div>`;
+  // });
+  printToDom('#weatherDisplay', domString);
 };
 
 const buildFiveDay = (weatherArray) => {
-  let weekWeather = '';
-  weatherArray.forEach((weatherAll) => {
-    const dayTime = weatherAll.dt_txt.replace(/21:00:00/, '').replace(/2018-/, '').split(' ');
-    weekWeather += `<div${weatherAll.weather[0].main}>`;
-    weekWeather += `<h2>${dayTime[0]}</h2>`;
-    weekWeather += `<p>${weatherAll.weather[0].description}: ${weatherAll.main.temp}&degF</p>`;
-    weekWeather += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${weatherAll.main.temp_min}&degF  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${weatherAll.main.temp_max}&degF</p>`;
-    weekWeather += `<p>Air Pressure: ${weatherAll.main.pressure}</p>`;
-    weekWeather += `<p>Wind Speed: ${weatherAll.wind.speed}</p>`;
-    weekWeather += `</div>`;
+  let domStrang = '';
+  weatherArray.forEach((weather, index) => {
+    // const dayTime = (weather.dt_txt * 1000);
+    if (index % 8 === 0) {
+      domStrang += `<div class="col-sm-6 col-md-4">`;
+      domStrang += `<div class="thumbnail five-day-cards">`;
+      domStrang += `<div class="caption">`;
+      // domStrang += `<h3>${weather.weather.name}</h3>`;
+      domStrang += `<div${weather.weather[0].main}>`;
+      // domStrang +=      `<h2>${dayTime[0]}</h2>`;
+      domStrang += `<p>${weather.weather[0].description}: ${weather.main.temp}&degF</p>`;
+      domStrang += `<p>Min: ${weather.main.temp_min}&degF  Max:${weather.main.temp_max}&degF</p>`;
+      domStrang += `<p>Air Pressure: ${weather.main.pressure}</p>`;
+      domStrang += `<p>Wind Speed: ${weather.wind.speed}</p>`;
+      domStrang += `</div>`;
+      domStrang += `</div>`;
+      domStrang += `</div>`;
+      domStrang += `</div>`;
+    }
   });
-  $('#weatherFiveDisplay').html(weekWeather);
+  printToDom('#weatherFiveDisplay', domStrang);
 };
 
-const printToDom = (wetString) => {
-  $('#weatherDisplay').html(wetString);
-
+const printToDom = (id, string) => {
+  $(id).html(string);
 };
 
 module.exports = {
-  domString,
+  singleWeather,
   buildFiveDay,
 };
