@@ -1,38 +1,25 @@
 const owm = require('./owm');
-
-//  ---- Validates Zip Code ---- //
-// function checkZip(value) {
-//   return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
-// };
+// const dom = require('./dom');
 
 const pressEnter = () => {
   $(document).keypress((e) => {
     if (e.key === 'Enter') {
       const searchZips = $('#searchBar').val();
-      owm.showResults(searchZips);
-      $('#weatherFiveDisplay').html('');
+      owm.showCurrentResults(searchZips);
     }
   });
 };
 
-// const fiveDay = () => {
-//   $(document).keypress((e) => {
-//     if (e.key === 'Enter') {
-//       const searchZips = $('#searchBar').val();
-//       owm.showResults(searchZips);
-//     }
-//   });
-// };
-
 const today = (e) => {
-  $(document).on('click', (e) => {
-    $('.Today').show();
+  $(document).on('click', '.Today', (e) => {
+    owm.showCurrentResults();
   });
 };
 
 const fiveDayClick = (e) => {
-  $(document).on('click', (e) => {
-    $('.fiveDayButt').show();
+  $(document).on('click', '.fiveDayButt', (e) => {
+    // $('.fiveDayButt').show();
+    owm.showFiveDayResults();
   });
 };
 
@@ -40,7 +27,9 @@ const initializer = () => {
   pressEnter();
   // fiveDay();
   today();
+  // singleWeather();
   fiveDayClick();
+  // buildFiveDay();
 };
 
 module.exports = {
