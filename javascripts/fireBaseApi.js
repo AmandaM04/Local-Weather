@@ -11,27 +11,27 @@ const addWeatherToSaveList = (newSaveWet) => {
       url: `${fireBaseConfig.databaseURL}/weathers.json`,
       data: JSON.stringify(newSaveWet),
     })
-      .done((uniqueKey) => {
-        resolve(uniqueKey);
+      .done((newWeatherFirebaseUniqueKey) => {
+        resolve(newWeatherFirebaseUniqueKey);
       })
-      .fail((error) => {
+      .catch((error) => {
         reject(error);
       });
   });
 };
 
 const getAllForecast = () => {
+  const allForecastArray = [];
   return new Promise((resolve, reject) => {
-    const allForecastArray = [];
     $.ajax({
-      method: 'GET',
+      method: 'GET', // READ
       url: `${fireBaseConfig.databaseURL}/weathers.json`,
     })
-      .done((allForecastObject) => {
+      .then((allForecastObject) => {
         if (allForecastObject !== null) {
           Object.keys(allForecastObject).forEach((fbKey) => {
             allForecastObject[fbKey].id = fbKey;
-            allForecastObject.push(allForecastObject[fbKey]);
+            allForecastArray.push(allForecastObject[fbKey]);
           });
         }
         resolve(allForecastArray);
