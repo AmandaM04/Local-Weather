@@ -1,5 +1,6 @@
 const owm = require('./owm');
-// const dom = require('./dom');
+const fireBaseApi = require('./fireBaseApi');
+const dom = require('./dom');
 
 const pressEnter = () => {
   $(document).keypress((e) => {
@@ -23,13 +24,32 @@ const fiveDayClick = (e) => {
   });
 };
 
+const saveWeatherEvent = () => {
+  $(document).on('click', '.addToSaveList', (e) => {
+    fireBaseApi.addWeatherToSaveList()
+      .then(() => {
+      })
+      .catch((error) => {
+        console.error('error in saving weather', error);
+      });
+  });
+};
+
+const getAllForecastEvent = () => {
+  fireBaseApi.getAllForecast()
+    .then((weatherArray) => {
+      dom.domStrang(weatherArray, 'savedMovies');
+    })
+    .catch((error) => {
+      console.error('error in get all movies', error);
+    });
+};
+
 const initializer = () => {
   pressEnter();
-  // fiveDay();
   today();
-  // singleWeather();
   fiveDayClick();
-  // buildFiveDay();
+  saveWeatherEvent();
 };
 
 module.exports = {
