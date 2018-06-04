@@ -1,0 +1,12 @@
+{
+	"forecast": {
+		"weather0": {
+			"city_name": "Nashville",
+			"conditions": "broken clouds",
+			"temperature": "293.25",
+			"air_pressure": "1019",
+			"wind_speed": "5.1",
+			"is_Scary": false
+		}
+	}
+}
