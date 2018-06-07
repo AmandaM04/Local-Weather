@@ -6,7 +6,8 @@
 			"temperature": "293.25",
 			"air_pressure": "1019",
 			"wind_speed": "5.1",
-			"is_Scary": false
+      "is_Scary": false,
+      "uid": "wwauDiAIlhadGxz7fdR3hIWflx32"
 		}
 	}
 }
