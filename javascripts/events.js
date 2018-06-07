@@ -1,6 +1,6 @@
 const {showCurrentResults, showFiveDayResults,} = require('./owm');
-const {addWeatherToSaveList,} = require('./fireBaseApi');
-// const dom = require('./dom');
+const fireBaseApi = require('./fireBaseApi');
+const dom = require('./dom');
 
 const navLinks = () => {
   $(document).click((e) => {
@@ -12,6 +12,7 @@ const navLinks = () => {
       $('#mySaves').removeClass('hide');
       $('#search').addClass('hide');
       $('#authScreen').addClass('hide');
+      getAllForecastEvent();
     } else if (e.target.id === 'navSearch') {
       $('#mySaves').addClass('hide');
       $('#search').removeClass('hide');
@@ -43,7 +44,7 @@ const fiveDayClick = (e) => {
 
 const saveWeatherEvent = () => {
   $(document).on('click', '.addToSaveList', (e) => {
-    addWeatherToSaveList()
+    fireBaseApi.addWeatherToSaveList()
       .then(() => {
       })
       .catch((error) => {
@@ -52,15 +53,15 @@ const saveWeatherEvent = () => {
   });
 };
 
-// const getAllForecastEvent = () => {
-//   fireBaseApi.getAllForecast()
-//     .then((weatherArray) => {
-//       dom.domStrang(weatherArray, 'savedMovies');
-//     })
-//     .catch((error) => {
-//       console.error('error in get all movies', error);
-//     });
-// };
+const getAllForecastEvent = () => {
+  fireBaseApi.getAllForecast()
+    .then((weatherArray) => {
+      dom.domStrang(weatherArray, 'savedForecastSelect');
+    })
+    .catch((error) => {
+      console.error('error in get all forecast', error);
+    });
+};
 
 const authEvents = () => {
   $('#signIn-btn').click((e) => {
@@ -102,4 +103,5 @@ const initializer = () => {
 
 module.exports = {
   initializer,
+  getAllForecastEvent,
 };
