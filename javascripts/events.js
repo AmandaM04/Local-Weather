@@ -1,3 +1,5 @@
+/* eslint camelcase: 0 */
+
 const {showCurrentResults, showFiveDayResults,} = require('./owm');
 const fireBaseApi = require('./fireBaseApi');
 const dom = require('./dom');
@@ -23,7 +25,7 @@ const navLinks = () => {
 
 const pressEnter = () => {
   $(document).keypress((e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !$('#search').hasClass('hide')) {
       const searchZips = $('#searchBar').val();
       showCurrentResults(searchZips);
     }
@@ -44,7 +46,16 @@ const fiveDayClick = (e) => {
 
 const saveWeatherEvent = () => {
   $(document).on('click', '.addToSaveList', (e) => {
-    fireBaseApi.addWeatherToSaveList()
+    const forecastToAddCard = $(e.target).closest('.weather');
+    const forecastToAdd = {
+      city_name: $('#weatherDisplay .city-name').text(),
+      conditions: forecastToAddCard.find('.weather-description').text(),
+      temperature: forecastToAddCard.find('.weather-temp').text(),
+      air_pressure: forecastToAddCard.find('.weather-pressure').text(),
+      wind_speed: forecastToAddCard.find('.weather-speed').text(),
+      is_Scary: false,
+    };
+    fireBaseApi.addWeatherToSaveList(forecastToAdd)
       .then(() => {
       })
       .catch((error) => {
@@ -56,7 +67,7 @@ const saveWeatherEvent = () => {
 const getAllForecastEvent = () => {
   fireBaseApi.getAllForecast()
     .then((weatherArray) => {
-      dom.domStrang(weatherArray, 'savedForecastSelect');
+      dom.saveEventDom(weatherArray, '#savedForecastSelect');
     })
     .catch((error) => {
       console.error('error in get all forecast', error);
@@ -70,7 +81,7 @@ const authEvents = () => {
     const password = $('#inputPassword').val();
     firebase.auth().signInWithEmailAndPassword(email, password)
       .catch((error) => {
-        console.error('error with signin pg', error);
+        console.error('error with sign-in pg', error);
       });
   });
 

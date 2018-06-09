@@ -1,4 +1,4 @@
-// const {getAllForecastEvents,} = require('./events'); // if you have multiple function being called from same file. just add a comma inside the curly brackets and write them out {blah, blah, blah,}
+const {getAllForecastEvent,} = require('./events'); // if you have multiple function being called from same file. just add a comma inside the curly brackets and write them out {blah, blah, blah,}
 const {setUID,} = require('./fireBaseApi');
 
 const checkLoginStatus = () => {
@@ -10,7 +10,7 @@ const checkLoginStatus = () => {
       $('#authScreen').addClass('hide');
       $('#mySavedForecast, #navSearch, #logOut').removeClass('hide');
       $('#authentication').addClass('hide');
-      // getAllForecastEvents();
+      getAllForecastEvent();
     } else {
       $('#mySaves').addClass('hide');
       $('#search').addClass('hide');

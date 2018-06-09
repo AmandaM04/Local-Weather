@@ -27,8 +27,8 @@ const addWeatherToSaveList = (newSaveWet) => {
 };
 
 const getAllForecast = () => {
-  const allForecastArray = [];
   return new Promise((resolve, reject) => {
+    const allForecastArray = [];
     $.ajax({
       method: 'GET', // READ
       url: `${fireBaseConfig.databaseURL}/forecast.json?orderBy="uid"&equalTo="${uid}"`,
