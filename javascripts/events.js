@@ -67,7 +67,7 @@ const saveWeatherEvent = () => {
 const getAllForecastEvent = () => {
   fireBaseApi.getAllForecast()
     .then((weatherArray) => {
-      dom.saveDom(weatherArray, '#savedForecastSelect');
+      dom.saveEventDom(weatherArray, '#savedForecastSelect');
     })
     .catch((error) => {
       console.error('error in get all forecast', error);
