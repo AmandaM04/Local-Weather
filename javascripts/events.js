@@ -1,6 +1,6 @@
 /* eslint camelcase: 0 */
 
-const {showCurrentResults, showFiveDayResults,} = require('./owm');
+const { showCurrentResults, showFiveDayResults, } = require('./owm');
 const fireBaseApi = require('./fireBaseApi');
 const dom = require('./dom');
 
@@ -74,6 +74,19 @@ const getAllForecastEvent = () => {
     });
 };
 
+const deleteForecastFromFirebase = () => {
+  $(document).on('click', 'deleteFromSaveList', (e) => {
+    const weatherToDeleteId = $(e.target).closest('.weather').data('firebaseId');
+    fireBaseApi.deleteForecastFromDatabase(weatherToDeleteId)
+      .then(() => {
+        getAllForecastEvent();
+      })
+      .catch((error) => {
+        console.error('error from delete movie', error);
+      });
+  });
+};
+
 const authEvents = () => {
   $('#signIn-btn').click((e) => {
     e.preventDefault();
@@ -109,6 +122,7 @@ const initializer = () => {
   today();
   fiveDayClick();
   saveWeatherEvent();
+  deleteForecastFromFirebase();
   authEvents();
 };
 
