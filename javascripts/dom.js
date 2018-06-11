@@ -47,10 +47,10 @@ const saveEventDom = (saveArray, divId) => {
     domStrang += `<div class="thumbnail weather" data-firebase-id="${weather.id}">`;
     domStrang += `<div class="caption">`;
     domStrang += `<h4>${weather.city_name}</h4>`;
-    domStrang += `<p>Location: ${weather.air_pressure}</p>`;
     domStrang += `<p>Conditions: ${weather.conditions}</p>`;
     domStrang += `<p>Temp: ${weather.temperature}&degF</p>`;
     domStrang += `<p>Wind: ${weather.wind_speed}</p>`;
+    domStrang += `<p>Air Pressure: ${weather.air_pressure}</p>`;
     domStrang += `<button type="button" class="btn btn-default deleteFromSaveList" aria-label="Trash"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>`;
     domStrang += `</div>`;
     domStrang += `</div>`;

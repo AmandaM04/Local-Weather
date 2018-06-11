@@ -75,7 +75,7 @@ const getAllForecastEvent = () => {
 };
 
 const deleteForecastFromFirebase = () => {
-  $(document).on('click', 'deleteFromSaveList', (e) => {
+  $(document).on('click', '.deleteFromSaveList', (e) => {
     const weatherToDeleteId = $(e.target).closest('.weather').data('firebaseId');
     fireBaseApi.deleteForecastFromDatabase(weatherToDeleteId)
       .then(() => {
@@ -85,6 +85,10 @@ const deleteForecastFromFirebase = () => {
         console.error('error from delete movie', error);
       });
   });
+};
+
+const updateForecastInFirebase = () => {
+  // is_Scary
 };
 
 const authEvents = () => {
@@ -123,6 +127,7 @@ const initializer = () => {
   fiveDayClick();
   saveWeatherEvent();
   deleteForecastFromFirebase();
+  updateForecastInFirebase();
   authEvents();
 };
 
