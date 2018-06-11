@@ -44,13 +44,14 @@ const saveEventDom = (saveArray, divId) => {
   saveArray.forEach((weather) => {
     // not yet using id or is_Scary
     domStrang += `<div class="col-sm-6 col-md-4">`;
-    domStrang += `<div class="thumbnail weather">`;
+    domStrang += `<div class="thumbnail weather" data-firebase-id="${weather.id}">`;
     domStrang += `<div class="caption">`;
     domStrang += `<h4>${weather.city_name}</h4>`;
     domStrang += `<p>Location: ${weather.air_pressure}</p>`;
     domStrang += `<p>Conditions: ${weather.conditions}</p>`;
     domStrang += `<p>Temp: ${weather.temperature}&degF</p>`;
     domStrang += `<p>Wind: ${weather.wind_speed}</p>`;
+    domStrang += `<button type="button" class="btn btn-default deleteFromSaveList" aria-label="Trash"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>`;
     domStrang += `</div>`;
     domStrang += `</div>`;
     domStrang += `</div>`;
