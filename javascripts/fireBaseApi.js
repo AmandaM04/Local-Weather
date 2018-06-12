@@ -85,6 +85,22 @@ const deleteForecastFromDatabase = (weatherId) => {
   });
 };
 
+const updateForecastFromDatabase = (modifiedForecast, weatherId) => {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'PUT',
+      url: `${fireBaseConfig.databaseURL}/forecast/${weatherId}.json`,
+      data: JSON.stringify(modifiedForecast),
+    })
+      .done(() => {
+        resolve();
+      })
+      .fail((error) => {
+        reject(error);
+      });
+  });
+};
+
 module.exports = {
   addWeatherToSaveList,
   setConfig,
@@ -92,4 +108,5 @@ module.exports = {
   getAllForecast,
   getSavedForecast,
   deleteForecastFromDatabase,
+  updateForecastFromDatabase,
 };
