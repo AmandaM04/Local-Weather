@@ -86,6 +86,7 @@ const deleteForecastFromDatabase = (weatherId) => {
 };
 
 const updateForecastFromDatabase = (modifiedForecast, weatherId) => {
+  modifiedForecast.uid = uid;
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'PUT',

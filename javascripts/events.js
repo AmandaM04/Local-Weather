@@ -44,6 +44,12 @@ const fiveDayClick = (e) => {
   });
 };
 
+const submit = (e) => {
+  $(document).on('click', '.submitButt', (e) => {
+    showCurrentResults();
+  });
+};
+
 const saveWeatherEvent = () => {
   $(document).on('click', '.addToSaveList', (e) => {
     const forecastToAddCard = $(e.target).closest('.weather');
@@ -88,7 +94,25 @@ const deleteForecastFromFirebase = () => {
 };
 
 const updateForecastInFirebase = () => {
-  // is_Scary
+  $(document).on('click', '.updateToScarry', (e) => {
+    const weatherToUpdateId = $(e.target).closest('.weather').data('firebaseId');
+    const forecastToUpdateCard = $(e.target).closest('.weather');
+    const modifiedForecast = {
+      city_name: $('#weatherDisplay .city-name').text(),
+      conditions: forecastToUpdateCard.find('.weather-conditions').text(),
+      temperature: forecastToUpdateCard.find('.weather-temp').text(),
+      air_pressure: forecastToUpdateCard.find('.weather-pressure').text(),
+      wind_speed: forecastToUpdateCard.find('.weather-speed').text(),
+      is_Scary: true,
+    };
+    fireBaseApi.updateForecastFromDatabase(modifiedForecast, weatherToUpdateId)
+      .then(() => {
+        getAllForecastEvent();
+      })
+      .catch((error) => {
+        console.error('error from delete movie', error);
+      });
+  });
 };
 
 const authEvents = () => {
@@ -125,6 +149,7 @@ const initializer = () => {
   pressEnter();
   today();
   fiveDayClick();
+  submit();
   saveWeatherEvent();
   deleteForecastFromFirebase();
   updateForecastInFirebase();
