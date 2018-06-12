@@ -42,16 +42,16 @@ const printToDom = (id, string) => {
 const saveEventDom = (saveArray, divId) => {
   let domStrang = '';
   saveArray.forEach((weather) => {
-    // not yet using id or is_Scary
     domStrang += `<div class="col-sm-6 col-md-4">`;
     domStrang += `<div class="thumbnail weather" data-firebase-id="${weather.id}">`;
     domStrang += `<div class="caption">`;
-    domStrang += `<h4>${weather.city_name}</h4>`;
-    domStrang += `<p>Conditions: ${weather.conditions}</p>`;
-    domStrang += `<p>Temp: ${weather.temperature}&degF</p>`;
-    domStrang += `<p>Wind: ${weather.wind_speed}</p>`;
-    domStrang += `<p>Air Pressure: ${weather.air_pressure}</p>`;
+    domStrang += `<h4 class="city-name">${weather.city_name}</h4>`;
+    domStrang += `<p>Conditions: <span class="weather-conditions">${weather.conditions}</span></p>`;
+    domStrang += `<p>Temp: <span class="weather-temp">${weather.temperature}</span>&degF</p>`;
+    domStrang += `<p>Wind Speed: <span class="weather-speed">${weather.wind_speed}</span>&degF</p>`;
+    domStrang += `<p>Air Pressure: <span class="weather-pressure"> ${weather.air_pressure}</span></p>`;
     domStrang += `<button type="button" class="btn btn-default deleteFromSaveList" aria-label="Trash"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>`;
+    domStrang += `<button type="button" class="btn btn-default updateToScarry" aria-label="Trash"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>`;
     domStrang += `</div>`;
     domStrang += `</div>`;
     domStrang += `</div>`;
