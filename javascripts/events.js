@@ -98,7 +98,7 @@ const updateForecastInFirebase = () => {
     const weatherToUpdateId = $(e.target).closest('.weather').data('firebaseId');
     const forecastToUpdateCard = $(e.target).closest('.weather');
     const modifiedForecast = {
-      city_name: $('#weatherDisplay .city-name').text(),
+      city_name: forecastToUpdateCard.find('.city-name').text(),
       conditions: forecastToUpdateCard.find('.weather-conditions').text(),
       temperature: forecastToUpdateCard.find('.weather-temp').text(),
       air_pressure: forecastToUpdateCard.find('.weather-pressure').text(),
