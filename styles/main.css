@@ -1,7 +1,8 @@
 body {
   background-color: white;
+  color: black;
 }
 
-.red {
-  background-color: red;
+.scary {
+  background-color: rgba(255, 0, 0, 0.68);
 }
