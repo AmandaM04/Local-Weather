@@ -44,7 +44,7 @@ const saveEventDom = (saveArray, divId) => {
   saveArray.forEach((weather) => {
     domStrang += `<div class="col-sm-6 col-md-4">`;
     if (weather.is_Scary === true) {
-      domStrang += `<div class="thumbnail weather scary" style="color:white;" data-firebase-id="${weather.id}">`;
+      domStrang += `<div class="scary thumbnail weather" data-firebase-id="${weather.id}">`;
     } else {
       domStrang += `<div class="thumbnail weather " data-firebase-id="${weather.id}">`;
     }
