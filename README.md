@@ -18,8 +18,8 @@ Find current weather or a five-day forecast based on a zipcode. You can either p
 5. npm install (Press enter until everything is done)
 6. Once install is complete, run grunt by typing grunt in the terminal and pressing enter.
 7. Cd up to the project directory by typing cd ..
-8. Then type hs -p 9999
-9. In your browser navigate to: localhost:9999
+8. Then type hs -p 8080
+9. In your browser navigate to: localhost:8080
 
 ## Contributors
 [Amanda Mitchell] (https://github.com/AmandaM04)
