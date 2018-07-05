@@ -4,7 +4,10 @@
 Find current weather or a five-day forecast based on a zipcode. You can either press enter or submit to reveal your request. You can save your favorite forecast options and find them under the My Forecast tab. Under this tab you will be able to delete or mark as Scary with an alert button. Once you mark the weather card as Scary, the background of the card will turn red in color.
 
 ## Screenshot
-
+![https://raw.githubusercontent.com/AmandaM04/Local-Weather/master/screenshots/Local%20Weather%20Auth.png
+  https://raw.githubusercontent.com/AmandaM04/Local-Weather/master/screenshots/Local%20Weather%20Current.png
+  https://raw.githubusercontent.com/AmandaM04/Local-Weather/master/screenshots/Local%20Weather%205%20Day.png
+  https://raw.githubusercontent.com/AmandaM04/Local-Weather/master/screenshots/Local%20Weather%20Saved%20and%20Scary.png]
 
 
 ## How To Run
